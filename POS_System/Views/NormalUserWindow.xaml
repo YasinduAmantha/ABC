@@ -1,0 +1,222 @@
+﻿<Window x:Class="POS_System.Views.NormalUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS_System.Views"
+        xmlns:localVM="clr-namespace:POS_System.ViewModels"
+        mc:Ignorable="d"
+        Title="NormalUserWindow"  Height="510" Width="788"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        Background="Transparent" AllowsTransparency="True">
+
+    <Window.DataContext>
+        <localVM:NormalUserVM/>
+    </Window.DataContext>
+
+    <Border Style="{StaticResource commonBorder}" Margin="0,0,10,0">
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#F7F8F8" Offset="1"/>
+                <GradientStop Color="#ACBB78" Offset="0"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                <Border CornerRadius="18 18 0 0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Color="#0f0c29" Offset="1"/>
+                            <GradientStop Color="#302b63" Offset="0"/>
+                            <GradientStop Color="#24243e" Offset="0"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+                <TextBlock Text="S u p e r  C a f e  U S E R  W i n d o w"
+                               Foreground="White"
+                               FontSize="10"
+                               FontWeight="ExtraLight"
+                               FontFamily="Andalus"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+
+                <Button Style="{StaticResource CloseButton}" x:Name="btnClose" Command="{Binding CloseWindowCommand}" Margin="736,0,10,0" RenderTransformOrigin="0.5,0.5" >
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Button Style="{StaticResource CombinedButtonStylex}" Margin="695,2,41,2">
+                    <Image Source="/icons/log-out.png" Height="30" Width="30" />
+                </Button>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="415*"  />
+                    <ColumnDefinition Width="369*"  />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,64,0">
+                    <TextBlock Text="Available Products" 
+                               FontFamily="Comic Sans MS"
+                               Foreground="Black"
+                               FontSize="20"
+                               Margin="0 10 0 10"
+                               FontWeight="ExtraBold" Width="179"/>
+                    <ListBox
+                             BorderBrush="Black"
+                             BorderThickness="2"
+                             x:Name="ProductListBox"
+                             ItemsSource="{Binding Products}"
+                             SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
+                             SelectionMode="Single"
+                             Height="360"
+                             Width="284">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"
+                                           FlowDirection="LeftToRight" 
+                                           Width="275"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="Black" BorderThickness="2" Margin="5 10 5 5" Height="93" Width="71">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/icons/goods.jpg" Opacity=".4"/>
+                                    </Border.Background>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="Bold" Height="40" Background="LightBlue" Width="67" TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="{Binding Type}" Margin="5" HorizontalAlignment="Center" Width="50" />
+                                        <TextBlock Text="{Binding Price, StringFormat=$\{0:F2\}}" Margin="5" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Red" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.ColumnSpan="2" Margin="309,0,0,0">
+
+                    <TextBlock Text="Cart" 
+                               FontFamily="Comic Sans MS"
+                               Foreground="Black"
+                               FontSize="20"
+                               Margin="0 10 0 10"
+                               FontWeight="ExtraBold" Width="46"/>
+
+                    <ListBox BorderBrush="Black"
+         BorderThickness="3"
+         Name="cartListBox"
+         ItemsSource="{Binding CartProducts}"
+         SelectionMode="Single"
+         Margin="10,5,10,60"
+         Height="354" Width="437">
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Border BorderThickness="1">
+                                                <Border.Background>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                        <GradientStop Color="#C6FFDD" Offset="0"/>
+                                                        <GradientStop Color="#FBD786" Offset="1"/>
+                                                        <GradientStop Color="#FFFFFF" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Border.Background>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="150"/>
+                                                        <ColumnDefinition Width="75"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Background="Transparent" CornerRadius="20">
+                                                        <TextBlock Text="{Binding Name}" Margin="10" Grid.Column="0" Style="{StaticResource TextBlockStyle}"/>
+                                                    </Border>
+
+                                                    <TextBlock Text="{Binding Type}" Margin="10" Grid.Column="1" Style="{StaticResource TextBlockStyle}"/>
+                                                    <TextBlock Text="{Binding Price, StringFormat='{}${0:F2}'}" Margin="10" Grid.Column="2" Style="{StaticResource TextBlockStyle}"/>
+                                                    <StackPanel Orientation="Horizontal" Grid.Column="3">
+                                                        <Button Content="+" Command="{Binding DataContext.IncreaseQuantityCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}" Margin="5"
+                                                                Style="{StaticResource ButtonBill}"/>
+                                                        <TextBox Text="{Binding Quantity}" Width="30" Height="40" Margin="5" Style="{StaticResource TextBoxStyle}" />
+
+                                                        <Button Content="-" Command="{Binding DataContext.DecreaseQuantityCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                            CommandParameter="{Binding}" Margin="5" Style="{StaticResource ButtonBill}"/>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.Resources>
+                    </ListBox>
+
+
+                </StackPanel>
+
+
+                <Button  Style="{StaticResource NormalUserButton01}" Margin="90,427,173,10"   Command="{Binding AddToCartCommand}"
+                    CommandParameter="{Binding SelectedProduct}"
+                            ToolTip="Add the selected product to your cart">
+
+                    <StackPanel Orientation="Horizontal" Width="118">
+                        <Image Source="/icons/add-to-cart.png" Width="32" Height="32" VerticalAlignment="Center"/>
+                        <TextBlock Text="Add to Cart" VerticalAlignment="Center" Foreground="White" Margin="5 0 0 0" Width="69"/>
+                    </StackPanel>
+                </Button>
+
+
+
+
+                <Button Style="{StaticResource NormalUserButton02}"
+                    Command="{Binding RemoveFromCartCommand, UpdateSourceTrigger=PropertyChanged}"
+                    CommandParameter="{Binding SelectedItem, ElementName=cartListBox}"
+                    IsEnabled="{Binding CartProducts.Count}"
+                    ToolTip="Remove the selected item from your cart" Margin="386,427,198,10" Grid.ColumnSpan="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/icons/remove cart.png" Width="32" Height="32" VerticalAlignment="Center"/>
+                        <TextBlock Text="Remove from Cart" VerticalAlignment="Center" Foreground="White" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Button>
+
+
+
+                <!-- Pay Button -->
+                <Button Grid.Column="1" Style="{StaticResource NormalUserButton03}"
+                    Command="{Binding PayCommand}"
+                    IsEnabled="{Binding CartProducts.Count}"
+                    ToolTip="Generate bill for the cart items. This button is disabled if there are no items in the cart." Margin="211,427,66,10" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/icons/pay.png" Width="32" Height="32" VerticalAlignment="Center"/>
+                        <TextBlock Text="Pay" VerticalAlignment="Center" Foreground="Black" Margin="5 0 0 0"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

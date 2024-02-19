@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="icons\add-to-cart.png" />
+    <None Remove="icons\billHistory.png" />
+    <None Remove="icons\crop.png" />
+    <None Remove="icons\goods.jpg" />
+    <None Remove="icons\log-out.png" />
+    <None Remove="icons\loginBackground.jpg" />
+    <None Remove="icons\loginPic.jpg" />
+    <None Remove="icons\man.png" />
+    <None Remove="icons\pay.png" />
+    <None Remove="icons\remove cart.png" />
+    <None Remove="icons\wallpaperflare.com_wallpaper.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons\add-to-cart.png" />
+    <Resource Include="icons\billHistory.png" />
+    <Resource Include="icons\crop.png" />
+    <Resource Include="icons\goods.jpg" />
+    <Resource Include="icons\log-out.png" />
+    <Resource Include="icons\loginBackground.jpg" />
+    <Resource Include="icons\loginPic.jpg" />
+    <Resource Include="icons\man.png" />
+    <Resource Include="icons\pay.png" />
+    <Resource Include="icons\remove cart.png" />
+    <Resource Include="icons\wallpaperflare.com_wallpaper.jpg" />
+  </ItemGroup>
+
+</Project>

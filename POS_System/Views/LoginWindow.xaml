@@ -1,0 +1,126 @@
+﻿<Window x:Class="POS_System.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POS_System.Views"
+        xmlns:localVM="clr-namespace:POS_System.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="SuperCafe Login Page" Height="312" Width="582"
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        Background="Transparent" AllowsTransparency="True">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <Window.DataContext>
+        <localVM:LoginWindowVM />
+    </Window.DataContext>
+
+    <Border Style="{StaticResource commonBorder}">
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#FFEEEE" Offset="1"/>
+                <GradientStop Color="#DDEFBB" Offset="0"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border  Style="{StaticResource mainUpperBorder}"/>
+
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Style="{StaticResource LoginTitleStyle}" />
+
+
+                <Button Style="{StaticResource minimizeButtonStyle}" x:Name="btnMinimize" Command="{Binding MinimizeWindowCommand}" />
+
+
+                <Button Style="{StaticResource CloseButton}" x:Name="btnClose" Command="{Binding CloseWindowCommand}" Margin="15,0,5,0" RenderTransformOrigin="4.299,0.665" Grid.ColumnSpan="2" Grid.Column="1"/>
+
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Grid Grid.Column="0" Margin="0,0,252,0">
+                    <Border CornerRadius="0 0 0 20" Opacity="0.5">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/icons/loginBackground.jpg"/>
+                        </Border.Background>
+                    </Border>
+
+                    <TextBlock Text="S U P E R      C  A F E"
+                               FontSize="20"
+                                   FontFamily="papyrus"
+                                   FontWeight="ExtraBold"
+                                   Foreground="Red"
+                                   FontStyle="Italic" Margin="44,10,19,223"/>
+
+                    <TextBlock Text="Quality goods in one place...."
+                               FontSize="20"
+                                   FontFamily="Gabriola"
+                                   FontWeight="ExtraBold"
+                                   Foreground="Black"
+                                   FontStyle="Italic" Margin="72,40,25,201"/>
+
+
+
+                    <Grid  HorizontalAlignment="Left" Height="39" Margin="40,90,0,0" VerticalAlignment="Top" Width="233">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="39" Margin="-1.333,0,0,0" VerticalAlignment="Top" Width="234.5"/>
+                        <materialDesign:PackIcon Kind="Account" Width="20" Height="20" Foreground="{Binding ElementName=UsernameTextBox,Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0" ></materialDesign:PackIcon>
+                        <TextBox x:Name="UsernameTextBox" Text="{Binding Username, Mode=TwoWay}" materialDesign:HintAssist.Hint="Username" Style="{StaticResource MaterialDesignFloatingHintTextBox}" CaretBrush="#FF2B5BEB" BorderBrush="#FF696FD0" HorizontalAlignment="Right" Width="208"/>
+                    </Grid>
+                    <Grid  HorizontalAlignment="Left" Height="39" Margin="40,140,0,0" VerticalAlignment="Top" Width="233">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Height="39" Margin="-1.333,0,0,0" VerticalAlignment="Top" Width="234.5"/>
+                        <materialDesign:PackIcon Kind="key" Width="20" Height="20" Foreground="{Binding ElementName=UsernameTextBox,Path=BorderBrush}" VerticalAlignment="Bottom" Margin="0 0" ></materialDesign:PackIcon>
+                        <PasswordBox   x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged"  materialDesign:HintAssist.Hint="Password"  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Grid.ColumnSpan="2" Margin="25,0,0,0" CaretBrush="#FF2B5BEB" BorderBrush="#FF696FD0" HorizontalAlignment="Right" Width="208"/>
+                    </Grid>
+
+                    <Button x:Name="btnLogin" Command="{Binding LoginCommand}"
+                            ToolTip="Resource name: MaterialDesignRaisedButton" Background="#FF2B5BEB" BorderBrush="Transparent" Content="Login" Margin="105,204,116,34"/>
+
+                </Grid>
+
+
+                <Grid Margin="324,0,0,0" >
+                    <Border CornerRadius="0 0 20 0" Opacity="0.6">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/icons/loginPic.jpg"/>
+                        </Border.Background>
+                    </Border>
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+    </Border>
+</Window>
